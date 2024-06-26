@@ -3,27 +3,17 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 import Slider from 'react-slick';
 import { fetchPartners } from '../api/partners';
+import AnimatedDiv from './AnimatedDiv';
 
 const HomeContainer = styled.div`
   padding: 20px;
   text-align: center;
 `;
 
-const DetailContainer = styled.div`
-  margin-top: 20px;
-  text-align: left;
-`;
-
 const FormContainer = styled.div`
   margin-top: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 `;
 
 const FormLabel = styled.label`
@@ -138,24 +128,26 @@ function Home() {
         <div>
           <p>You are logged in as {role}</p>
           {role === 'customer' && (
-            <FormContainer as={motion.div} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-              <h2>Travel Details</h2>
-              <FormLabel>Mode of Transportation</FormLabel>
-              <Select value={transport} onChange={(e) => setTransport(e.target.value)}>
-                <option value="">Select Mode</option>
-                <option value="flight">Flight</option>
-                <option value="bus">Bus</option>
-                <option value="train">Train</option>
-                <option value="car">Car</option>
-              </Select>
-              <FormLabel>Number of People Traveling</FormLabel>
-              <Input type="number" value={people} onChange={(e) => setPeople(e.target.value)} min="1" />
-              <FormLabel>Dates of Traveling</FormLabel>
-              <Input type="date" value={dates} onChange={(e) => setDates(e.target.value)} />
-              <FormLabel>Age</FormLabel>
-              <Input type="number" value={age} onChange={(e) => setAge(e.target.value)} min="0" />
-              <Button onClick={handleSearch}>Search Partners</Button>
-            </FormContainer>
+            <AnimatedDiv>
+              <FormContainer>
+                <h2>Travel Details</h2>
+                <FormLabel>Mode of Transportation</FormLabel>
+                <Select value={transport} onChange={(e) => setTransport(e.target.value)}>
+                  <option value="">Select Mode</option>
+                  <option value="flight">Flight</option>
+                  <option value="bus">Bus</option>
+                  <option value="train">Train</option>
+                  <option value="car">Car</option>
+                </Select>
+                <FormLabel>Number of People Traveling</FormLabel>
+                <Input type="number" value={people} onChange={(e) => setPeople(e.target.value)} min="1" />
+                <FormLabel>Dates of Traveling</FormLabel>
+                <Input type="date" value={dates} onChange={(e) => setDates(e.target.value)} />
+                <FormLabel>Age</FormLabel>
+                <Input type="number" value={age} onChange={(e) => setAge(e.target.value)} min="0" />
+                <Button onClick={handleSearch}>Search Partners</Button>
+              </FormContainer>
+            </AnimatedDiv>
           )}
           {partners.length > 0 && (
             <PartnerList>

@@ -1,27 +1,39 @@
 // src/theme.js
 import { createGlobalStyle } from 'styled-components';
 
+export const lightTheme = {
+  colors: {
+    primary: '#00c6ff',
+    secondary: '#0072ff',
+    background: '#ffffff',
+    text: '#000000',
+  },
+  fonts: {
+    main: 'Roboto, sans-serif',
+  },
+};
+
+export const darkTheme = {
+  colors: {
+    primary: '#00c6ff',
+    secondary: '#0072ff',
+    background: '#121212',
+    text: '#ffffff',
+  },
+  fonts: {
+    main: 'Roboto, sans-serif',
+  },
+};
+
 export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    font-family: 'Roboto', sans-serif;
-    background: #0f0c29; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
-    color: #fff;
+    font-family: ${(props) => props.theme.fonts.main};
+    background-color: ${(props) => props.theme.colors.background};
+    color: ${(props) => props.theme.colors.text};
   }
 
   * {
     box-sizing: border-box;
   }
 `;
-
-export const theme = {
-  colors: {
-    primary: '#00c6ff',
-    secondary: '#0072ff',
-  },
-  fonts: {
-    main: 'Roboto, sans-serif',
-  },
-};
